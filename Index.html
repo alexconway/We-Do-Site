@@ -48,9 +48,45 @@
   </style>
 </head>
 <body>
+  <body style="padding-bottom: 100px;">
   <h1>Talk to the We.Do API</h1>
-  <textarea id="input" placeholder="Type your message here..."></textarea>
-  <button onclick="sendMessage()">Send</button>
+ <div id="input-bar" style="
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+">
+  <textarea id="input" placeholder="Type your message..." rows="1" style="
+    flex: 1;
+    resize: none;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    height: 40px;
+    border-radius: 12px;
+    background: #f9f9f9;
+  "></textarea>
+  <button onclick="sendMessage()" style="
+    padding: 10px 16px;
+    font-size: 16px;
+    background: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  ">Send</button>
+</div>
+
   <div id="chat" style="margin-top: 30px; width: 90%; max-width: 600px;"></div>
 
   <script src="script.js"></script>
