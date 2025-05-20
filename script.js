@@ -6,6 +6,27 @@ function addMessage(role, content) {
   chat.appendChild(message);
 }
 
+function autoResizeTextarea() {
+  const textarea = document.getElementById("input");
+  textarea.style.height = "auto";
+  textarea.style.height = textarea.scrollHeight + "px";
+}
+
+function toggleSendButton() {
+  const input = document.getElementById("input");
+  const sendBtn = document.getElementById("send");
+
+  if (input.value.trim() === "") {
+    sendBtn.disabled = true;
+    sendBtn.style.opacity = 0.4;
+    sendBtn.style.cursor = "default";
+  } else {
+    sendBtn.disabled = false;
+    sendBtn.style.opacity = 1;
+    sendBtn.style.cursor = "pointer";
+  }
+}
+
 async function sendMessage() {
   const input = document.getElementById("input").value.trim();
   if (!input) return;
@@ -41,6 +62,22 @@ async function sendMessage() {
 
 // Show the initial assistant message when page loads
 window.addEventListener("DOMContentLoaded", () => {
+  // Start the assistant with an opening message
   addMessage("assistant", "Hello! How can I assist you with your custom storage organizer needs today?");
+
+  // Get the textarea element
+  const input = document.getElementById("input");
+
+  // Run both functions once at load
+  autoResizeTextarea();
+  toggleSendButton();
+
+  // Run them again whenever the user types
+  input.addEventListener("input", () => {
+    autoResizeTextarea();
+    toggleSendButton();
+  });
 });
+
+
  window.sendMessage = sendMessage;

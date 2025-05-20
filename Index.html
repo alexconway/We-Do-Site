@@ -65,26 +65,36 @@
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 ">
-  <textarea id="input" placeholder="Type your message..." rows="1" style="
-    flex: 1;
-    resize: none;
-    font-size: 16px;
-    padding: 10px;
-    border: none;
-    outline: none;
-    height: 40px;
-    border-radius: 12px;
-    background: #f9f9f9;
-  "></textarea>
-  <button onclick="sendMessage()" style="
-    padding: 10px 16px;
-    font-size: 16px;
-    background: #0070f3;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  ">Send</button>
+<textarea id="input" placeholder="Type your message..." style="
+  flex: 1;
+  resize: none;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: #f9f9f9;
+  min-height: 40px;
+  max-height: 160px;
+  overflow-y: auto;
+"></textarea>
+
+ <button id="send" onclick="sendMessage()" style="
+  width: 40px;
+  height: 40px;
+  background: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+">
+  ➤
+</button>
+
 </div>
 
   <div id="chat" style="margin-top: 30px; width: 90%; max-width: 600px;"></div>
