@@ -1,13 +1,19 @@
+function addMessage(role, content) {
+  const chat = document.getElementById("chat");
+  const message = document.createElement("div");
+  message.style.marginBottom = "16px";
+  message.textContent = `${role === "user" ? "👤" : "🤖"} ${content}`;
+  chat.appendChild(message);
+}
+
 async function sendMessage() {
   const input = document.getElementById("input").value.trim();
-  const responseEl = document.getElementById("response");
+  if (!input) return;
 
-  if (!input) {
-    responseEl.textContent = "Please enter a message.";
-    return;
-  }
+  addMessage("user", input);
+  document.getElementById("input").value = "";
 
-  responseEl.textContent = "Sending...";
+  addMessage("assistant", "Sending...");
 
   try {
     const res = await fetch("https://we-do-api.onrender.com/chat", {
@@ -23,8 +29,17 @@ async function sendMessage() {
     }
 
     const data = await res.json();
-    responseEl.textContent = data.response || JSON.stringify(data, null, 2);
+
+    // Replace "Sending..." with the real response
+    const chat = document.getElementById("chat");
+    chat.lastChild.textContent = `🤖 ${data.response}`;
   } catch (err) {
-    responseEl.textContent = `Error: ${err.message}`;
+    const chat = document.getElementById("chat");
+    chat.lastChild.textContent = `❌ Error: ${err.message}`;
   }
 }
+
+// Show the initial assistant message when page loads
+window.addEventListener("DOMContentLoaded", () => {
+  addMessage("assistant", "Hello! How can I assist you with your custom storage organizer needs today?");
+});
