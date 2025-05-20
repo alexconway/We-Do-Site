@@ -43,3 +43,4 @@ async function sendMessage() {
 window.addEventListener("DOMContentLoaded", () => {
   addMessage("assistant", "Hello! How can I assist you with your custom storage organizer needs today?");
 });
+ window.sendMessage = sendMessage;
