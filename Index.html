@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>We.Do Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+      background-color: #f9f9f9;
+    }
+    textarea {
+      width: 90%;
+      max-width: 600px;
+      height: 150px;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #0070f3;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0059c1;
+    }
+    pre {
+      margin-top: 30px;
+      width: 90%;
+      max-width: 600px;
+      background: #efefef;
+      padding: 15px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h1>Talk to the We.Do API</h1>
+  <textarea id="input" placeholder="Type your message here..."></textarea>
+  <button onclick="sendMessage()">Send</button>
+  <pre id="response"></pre>
+
+  <script src="script.js"></script>
+</body>
+</html>
