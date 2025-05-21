@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>On-Demand Customizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+    }
+    input {
+      display: block;
+      margin-bottom: 20px;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Customize Your Organizer</h1>
+
+  <label for="height">Height (inches)</label>
+  <input id="height" type="number" placeholder="Enter height" />
+
+  <label for="width">Width (inches)</label>
+  <input id="width" type="number" placeholder="Enter width" />
+
+  <label for="depth">Depth (inches)</label>
+  <input id="depth" type="number" placeholder="Enter depth" />
+
+  <button id="submit">Send</button>
+
+  <script>
+    document.getElementById("submit").addEventListener("click", () => {
+      const height = document.getElementById("height").value;
+      const width = document.getElementById("width").value;
+      const depth = document.getElementById("depth").value;
+      console.log({ height, width, depth });
+      // In the next step: send this to the backend
+    });
+  </script>
+</body>
+</html>
