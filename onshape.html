@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>On-Demand Customizer</title>
+  <title>Onshape Feature Customizer</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,14 +10,22 @@
       margin: 100px auto;
       padding: 20px;
     }
-    input {
+
+    label {
       display: block;
-      margin-bottom: 20px;
-      padding: 10px;
-      width: 100%;
-      font-size: 16px;
+      margin-top: 20px;
+      font-weight: bold;
     }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
     button {
+      margin-top: 30px;
       padding: 10px 20px;
       font-size: 16px;
       background: #0070f3;
@@ -29,7 +37,7 @@
   </style>
 </head>
 <body>
-  <h1>Customize Your Organizer</h1>
+  <h1>Customize Feature</h1>
 
   <label for="height">Height (inches)</label>
   <input id="height" type="number" placeholder="Enter height" />
@@ -42,13 +50,44 @@
 
   <button id="submit">Send</button>
 
+  <div id="status" style="margin-top: 30px;"></div>
+
   <script>
-    document.getElementById("submit").addEventListener("click", () => {
+    document.getElementById("submit").addEventListener("click", async () => {
       const height = document.getElementById("height").value;
       const width = document.getElementById("width").value;
       const depth = document.getElementById("depth").value;
-      console.log({ height, width, depth });
-      // In the next step: send this to the backend
+      const statusEl = document.getElementById("status");
+
+      if (!height || !width || !depth) {
+        statusEl.textContent = "Please fill in all dimensions.";
+        return;
+      }
+
+      statusEl.textContent = "Sending...";
+
+      try {
+        const response = await fetch("https://we-do-api.onrender.com/update-feature", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ height, width, depth })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          statusEl.textContent = "Feature updated successfully.";
+          console.log(data);
+        } else {
+          statusEl.textContent = "Error: " + (data.error || "Something went wrong.");
+          console.error(data);
+        }
+      } catch (err) {
+        statusEl.textContent = "Failed to send request.";
+        console.error("Request error:", err);
+      }
     });
   </script>
 </body>
